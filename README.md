@@ -1,16 +1,46 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+#  Mi Vet Online
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Mi Vet Online** es un proyecto de eCommerce desarrollado como parte del curso de React.  
+Simula una tienda online de veterinaria con productos para mascotas, permitiendo explorar artículos, ver sus detalles y agregarlos al carrito.
 
-## React Compiler
+## Tecnologías utilizadas
+- **React**  
+- **Vite**  
+- **React Router DOM**  
+- **JavaScript (ES6+)**  
+- **CSS Modules / estilos globales**
+- **FakeStore API** (para la carga dinámica de productos)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Estructura del proyecto:
+El proyecto está dividido en carpetas claras para mantener un orden semántico.
 
-## Expanding the ESLint configuration
+# Funcionalidades principales
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Listado de productos**  
+Carga los productos desde una API externa (FakeStoreAPI) y los muestra en tarjetas.  
+
+**Detalle de producto**  
+Cada producto tiene una página propia con su descripción, imagen y precio.  
+
+**Carrito de compras**  
+Permite agregar, eliminar y vaciar productos. Calcula el total automáticamente.  
+
+**Ruteo dinámico**  
+Navegación entre secciones con `react-router-dom`, incluyendo rutas dinámicas para los detalles de producto.  
+
+**Gestión de estado global**  
+Usa Context API para manejar tanto los productos como el carrito de forma centralizada.  
+
+## Objetivo académico
+
+El objetivo de este proyecto fue **practicar los fundamentos de React**:  
+- Manejo de estados con `useState`  
+- Efectos con `useEffect`  
+- Context API  
+- Rutas estáticas y dinámicas  
+- Consumo de una API pública  
+
+# Autor: Daiana Cardozo
+Estudiante de Desarrollo Frontend
