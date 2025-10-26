@@ -1,0 +1,20 @@
+.header {
+  background-color: #e3f2fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  width: 60px;
+  margin-right: 10px;
+}
+
+.title {
+  color: #1976d2;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
