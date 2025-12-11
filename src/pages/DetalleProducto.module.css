@@ -1,74 +1,203 @@
-.detalle {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px;
-  gap: 30px;
-}
-
-.contenedor {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  border-radius: 10px;
+.detallePagina {
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  gap: 40px;
 }
 
-.img {
-  width: 250px;
-  height: 250px;
+.categoriasBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.chip {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--c-primario);
+  background-color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--c-primario-oscuro);
+  text-decoration: none;
+}
+
+.chip:hover {
+  background-color: var(--c-bg-medio);
+}
+
+.chipCategoria {
+  border-style: dashed;
+}
+
+/* PANEL CELESTE */
+.panelCeleste {
+  background-color: var(--c-bg-medio);
+  border-radius: 14px;
+  padding: 22px;
+}
+
+/* CARD BLANCA interior  */
+.cardDetalle {
+  max-width: 1040px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 22px 26px;
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+/* Columna imagen */
+.colImagen {
+  flex: 0 0 260px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgDetalle {
+  max-width: 100%;
+  max-height: 260px;
   object-fit: contain;
 }
 
+/* Columna info */
+.colInfo {
+  flex: 1;
+}
+
+/* texto categoría arriba del título */
+.categoriaText {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--c-texto-suave);
+  margin: 0 0 4px;
+}
+
 .titulo {
-  color: #1976d2;
-  margin-bottom: 20px;
-  text-align: center;
+  margin: 0 0 8px;
+  color: var(--c-primario-oscuro);
+  font-size: 1.6rem;
 }
 
 .descripcion {
-  font-size: 1.1rem;
-  color: #333;
+  margin: 0 0 14px;
+  color: var(--c-texto-suave);
+  font-size: 0.95rem;
 }
 
-.precio {
-  font-size: 1.3rem;
+/* Precio + envío */
+.precioLinea {
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+  color: var(--c-texto);
+}
+
+.precioValor {
+  font-weight: 700;
+  color: var(--c-primario-oscuro);
+}
+
+.envioLinea {
+  margin: 0 0 10px;
+  font-size: 0.9rem;
+  color: #1b8f4c;
+}
+
+.meta {
+  margin: 0 0 10px;
+  font-size: 0.9rem;
+  color: var(--c-texto-suave);
+}
+
+.label {
   font-weight: 600;
-  margin-top: 10px;
-  color: #2e7d32;
 }
 
-.btn {
-  margin-top: 15px;
-  background-color: #1976d2;
-  color: #fff;
+/* botón */
+.btnAgregar {
+  margin-top: 6px;
+  padding: 10px 22px;
+  border-radius: 8px;
   border: none;
-  border-radius: 6px;
-  padding: 10px 20px;
+  background-color: var(--c-primario);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
   cursor: pointer;
-  font-size: 1rem;
-  transition: 0.3s;
+  transition: background-color 0.2s, transform 0.1s;
 }
 
-.btn:hover {
-  background-color: #0d47a1;
+.btnAgregar:hover {
+  background-color: var(--c-primario-oscuro);
 }
 
-/* 🔹 Modo responsive (celular) */
+.btnAgregar:active {
+  transform: scale(0.98);
+}
+
+/* link volver */
+.volver {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--c-texto-suave);
+  text-decoration: none;
+}
+
+.volver:hover {
+  text-decoration: underline;
+}
+
+/* responsive */
 @media (max-width: 768px) {
-  .contenedor {
-    flex-direction: column;
-    text-align: center;
-    gap: 20px;
+  .panelCeleste {
+    padding: 16px;
   }
 
-  .img {
-    width: 180px;
-    height: 180px;
+  .cardDetalle {
+    flex-direction: column;
+    align-items: center;
+    padding: 18px 14px;
   }
+
+  .colImagen {
+    flex: 0 0 auto;
+    margin-bottom: 12px;
+  }
+
+  .colInfo {
+    width: 100%;
+  }
+
+  .titulo,
+  .descripcion,
+  .precioLinea,
+  .envioLinea,
+  .meta {
+    text-align: center;
+  }
+
+  .btnAgregar {
+    width: 100%;
+  }
+
+  .volver {
+    text-align: center;
+  }
+}
+.volverWrapper {
+  text-align: center;
+  margin-top: 14px;
+}
+
+.volver {
+  font-size: 0.9rem;
+  color: var(--c-primario-oscuro);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.volver:hover {
+  text-decoration: underline;
 }

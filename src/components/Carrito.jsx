@@ -1,64 +1,88 @@
 // ============================
-// Componente: Carrito.jsx
-// Descripción: Muestra los productos agregados al carrito,
-// permite eliminar ítems individuales, vaciar el carrito completo
-// y ver el total del pedido.
+// Componente: Carrito.jsx 
+// Funciones disponibles:
+// ➤ Mostrar productos del carrito
+// ➤ Sumar/restar cantidades
+// ➤ Eliminar producto
+// ➤ Vaciar carrito
+// ➤ Mostrar total final
 // ============================
-
 
 import { useContext } from "react";
-import { CarritoContext } from "../context/CarritoContext"; //importo el contexto global del carrito // 
-import styles from "./Carrito.module.css";    // Importo los estilos del carrito
+import { CarritoContext } from "../context/CarritoContext.jsx";
+import styles from "./Carrito.module.css";
 
-// ============================
-// Componente principal
-// ============================
-
-function Carrito() {
-   // Traigo desde el contexto los datos y funciones del carrito //
-  const { carrito, eliminarDelCarrito, vaciarCarrito, total } =
-    useContext(CarritoContext);
+export default function Carrito() {
+  const {
+    carrito,
+    agregarAlCarrito,
+    restarUnidad,
+    eliminarDelCarrito,
+    vaciarCarrito,
+    total,
+  } = useContext(CarritoContext);
 
   return (
-    <div className={styles.contenedor}>
-      {/* Título del carrito */}
-      <h2 className={styles.titulo}>🛒 Carrito de Compras</h2>
+    <section className={styles.contenedor}>
+      <h2 className={styles.titulo}>🛍 Carrito de compras</h2>
 
-     {/* Si el carrito está vacío, muestro un mensaje */}
-      {carrito.length === 0 ? (
-        <p className={styles.vacio}>Tu carrito está vacío 😿</p>
-      ) : (
+      {/* Si no hay productos */}
+      {carrito.length === 0 && (
+        <p className={styles.vacio}>Tu carrito está vacío 🐾</p>
+      )}
+
+      {/* Render de productos */}
+      {carrito.length > 0 && (
         <>
-         {/* Recorro los productos del carrito y los muestro */}
-          {carrito.map((producto, indice) => (
-            <div key={indice} className={styles.producto}>
+          {carrito.map((item) => (
+            <div key={item.id} className={styles.producto}>
               <div className={styles.detalle}>
-                 {/* Imagen y descripción del producto */}
-                <img
-                  src={producto.image}
-                  alt={producto.title}
-                  className={styles.img}
-                />
+                <img src={item.image} className={styles.img} alt={item.title} />
+
                 <div className={styles.info}>
-                  <h4>{producto.title}</h4>
-                  <p>💰 <strong>${producto.price}</strong></p>
+                  <h4>{item.title}</h4>
+                  <p>
+                    💵 Precio unidad: <strong>${item.price}</strong>
+                  </p>
+                  <p>
+                    📦 Subtotal:{" "}
+                    <strong>${(item.price * item.cantidad).toFixed(2)}</strong>
+                  </p>
                 </div>
               </div>
-               
-                 {/* Botón para eliminar este producto */}
+
+              {/* Controles cantidad */}
+              <div className={styles.controles}>
+                <button
+                  className={styles.btnCantidad}
+                  onClick={() => restarUnidad(item.id)}
+                >
+                  ➖
+                </button>
+
+                <span className={styles.cantidad}>{item.cantidad}</span>
+
+                <button
+                  className={styles.btnCantidad}
+                  onClick={() => agregarAlCarrito(item)}
+                >
+                  ➕
+                </button>
+              </div>
 
               <button
-                onClick={() => eliminarDelCarrito(indice)}
                 className={styles.btnEliminar}
+                onClick={() => eliminarDelCarrito(item.id)}
               >
-                Eliminar
+                Eliminar ❌
               </button>
             </div>
           ))}
-         {/* Parte final: total del carrito y botón para vaciar todo */}
+
+          {/* AREA TOTAL */}
           <div className={styles.totalBox}>
             <p>
-              💵 Total: <strong>${total.toFixed(2)}</strong>
+              <strong>Total a pagar: ${total.toFixed(2)}</strong>
             </p>
             <button onClick={vaciarCarrito} className={styles.btnVaciar}>
               Vaciar carrito 🧺
@@ -66,8 +90,6 @@ function Carrito() {
           </div>
         </>
       )}
-    </div>
+    </section>
   );
 }
-
-export default Carrito;

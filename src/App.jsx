@@ -1,48 +1,96 @@
-// ============================
-// Componente principal: App.jsx
-// Es el núcleo de la aplicación. 
-// Define la estructura general y las rutas del sitio.
-// ============================
+import { Routes, Route } from "react-router-dom";
 
-
-import { Routes, Route } from "react-router-dom";  // Maneja la navegación entre páginas
-
-// Componentes de la interfaz
-import Header from "./components/Header.jsx"; 
+import Header from "./components/Header.jsx";
 import NavBar from "./components/NavBar.jsx";
 import Footer from "./components/Footer.jsx";
+import HeroCarousel from "./components/HeroCarousel.jsx";
 
-// Páginas y secciones principales
 import Inicio from "./pages/Inicio.jsx";
-import Productos from "./components/Productos.jsx";
 import DetalleProducto from "./pages/DetalleProducto.jsx";
-import Carrito from "./components/Carrito.jsx";
+import Carrito from "./pages/Carrito.jsx";
 import Servicios from "./pages/Servicios.jsx";
+import Login from "./pages/Login.jsx";
+import AdminProductos from "./pages/AdminProductos.jsx";
 
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import AdminRoute from "./components/AdminRoute.jsx";
 
 function App() {
   return (
     <>
-       {/* Encabezado con el logo y el título */}
+      {/* 🟦 Panel celeste de bienvenida */}
       <Header />
-       {/* Barra de navegación con los enlaces principales */}
+
+      {/*  Navbar */}
       <NavBar />
-          {/* Contenedor principal de las rutas */}
+
+      {/*  Carousel debajo del navbar */}
+      <HeroCarousel />
+
+      {/*  Contenido según la ruta */}
       <main>
         <Routes>
-             {/* Página de inicio */}
-          <Route path="/" element={<Inicio />} />
-               {/* Página de productos */}
-          <Route path="/productos" element={<Productos />} />
-           {/* Página de detalle individual de producto */}
-          <Route path="/productos/:id" element={<DetalleProducto />} />
-              {/* Página del carrito */}
-          <Route path="/carrito" element={<Carrito />} />
-           {/* Página de servicios */}
-          <Route path="/servicios" element={<Servicios />} />
+          {/*  Login público */}
+          <Route path="/login" element={<Login />} />
+
+          {/*  Rutas protegidas */}
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Inicio />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/productos"
+            element={
+              <ProtectedRoute>
+                <Inicio />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/productos/:id"
+            element={
+              <ProtectedRoute>
+                <DetalleProducto />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/carrito"
+            element={
+              <ProtectedRoute>
+                <Carrito />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/servicios"
+            element={
+              <ProtectedRoute>
+                <Servicios />
+              </ProtectedRoute>
+            }
+          />
+
+          {/*  Ruta SOLO para admin */}
+          <Route
+            path="/admin/productos"
+            element={
+              <AdminRoute>
+                <AdminProductos />
+              </AdminRoute>
+            }
+          />
         </Routes>
       </main>
-      {/* Pie de página */}
+
       <Footer />
     </>
   );

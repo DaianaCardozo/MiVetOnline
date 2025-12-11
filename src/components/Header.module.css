@@ -1,20 +1,69 @@
+/* Fondo exterior */
 .header {
-  background-color: #e3f2fd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 15px 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: var(--c-bg-claro);
+  padding: 20px 0;
 }
 
+/* Panel celeste */
+.hero {
+  background: var(--c-bg-medio);
+  border-radius: 12px;
+  padding: 20px;
+  width: 95%;
+  max-width: 1100px;
+  margin: 0 auto;
+
+  position: relative; 
+}
+
+/* LOGO alineado a la izquierda */
 .logo {
-  width: 60px;
-  margin-right: 10px;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  height: 100%;       
+  max-height: 80px;     
+  object-fit: contain;
 }
 
-.title {
-  color: #1976d2;
+/* TEXTO centrado */
+.textCenter {
+  text-align: center;
+}
+
+.titulo {
+  color: var(--c-primario-oscuro);
   font-size: 2rem;
-  font-weight: 700;
   margin: 0;
+  font-weight: 700;
+}
+
+.subtitulo {
+  margin-top: 8px;
+  font-size: 1.1rem;
+  color: var(--c-texto-suave);
+}
+
+/* LOGIN alineado a la derecha */
+.loginBox {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.loginBtn {
+  padding: 10px 16px;
+  background: var(--c-primario);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.25s;
+}
+
+.loginBtn:hover {
+  background: var(--c-primario-oscuro);
 }

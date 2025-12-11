@@ -1,62 +1,81 @@
-// ============================
-// Componente: DetalleProducto.jsx
-// Muestra el detalle de un producto seleccionado,
-// con su imagen, descripción, precio y un botón para agregarlo al carrito.
-// ============================
-
-import { useParams } from "react-router-dom"; // Hook para obtener el ID desde la URL
+import { useParams, Link } from "react-router-dom";
 import { useContext } from "react";
-import { ProductoContext } from "../context/ProductoContext";  // Contexto de productos
-import { CarritoContext } from "../context/CarritoContext"; // Contexto del carrito
-import styles from "./DetalleProducto.module.css"; // Importo los estilos del componente
+import { ProductoContext } from "../context/ProductoContext";
+import { CarritoContext } from "../context/CarritoContext";
+import styles from "./DetalleProducto.module.css";
 
-function DetalleProducto() {
-    // Obtengo el ID del producto actual desde la URL
+export default function DetalleProducto() {
   const { id } = useParams();
-  // Traigo la lista de productos del contexto
   const { productos } = useContext(ProductoContext);
-  // Traigo la función que permite agregar un producto al carrito
   const { agregarAlCarrito } = useContext(CarritoContext);
- // Busca el producto correspondiente al ID (convierto el id de string a número)
-  const producto = productos.find((p) => p.id === parseInt(id));
 
-  // Si el producto todavía no está disponible (por ejemplo, si la API no cargó)
-  if (!producto) {
-    return (
-      <section className={styles.detalle}>
-        <h2 className={styles.titulo}>Cargando detalle...</h2>
-        <p>O el producto no existe 🧐</p>
-      </section>
-    );
-  }
- // Si encontramos el producto, mostramos su detalle
+  const producto = productos.find((p) => String(p.id) === String(id));
+
+  if (!producto) return <h2>Producto no encontrado</h2>;
+
+  const nombre = producto.nombre || producto.title || "Producto sin nombre";
+  const descripcion =
+    producto.descripcion || producto.description || "Sin descripción disponible";
+  const precio = producto.precio || producto.price || 0;
+  const imagen =
+    producto.imagen || producto.image || "https://via.placeholder.com/400x400?text=Producto";
+  const categoria = producto.categoria || producto.category || "Sin categoría";
+  const stock = producto.stock ?? 0;
+
   return (
-    <section className={styles.detalle}>
-      <h2 className={styles.titulo}>{producto.title}</h2>
+    <section className={styles.detallePagina}>
+      {/* CHIPS ARRIBA */}
+      <div className={styles.categoriasBar}>
+        <Link to="/" className={styles.chip}>
+          Ver productos
+        </Link>
+        <span className={`${styles.chip} ${styles.chipCategoria}`}>
+          {categoria}
+        </span>
+      </div>
 
-       {/* Contenedor con la imagen y la información del producto */}
-      <div className={styles.contenedor}>
-         {/* Imagen del producto */}
-        <img
-          src={producto.image}
-          alt={producto.title}
-          className={styles.img}
-        />
-          {/* Descripción, precio y botón para agregar al carrito */}
-        <div>
-          <p className={styles.descripcion}>{producto.description}</p>
-          <p className={styles.precio}>💵 ${producto.price}</p>
+      {/* PANEL CELESTE */}
+      <div className={styles.panelCeleste}>
+        <article className={styles.cardDetalle}>
+          {/* Imagen */}
+          <div className={styles.colImagen}>
+            <img src={imagen} alt={nombre} className={styles.imgDetalle} />
+          </div>
 
-          <button
-            onClick={() => agregarAlCarrito(producto)}
-            className={styles.btn}
-          >
-            Agregar al carrito 🛒
-          </button>
-        </div>
+          {/* Información */}
+          <div className={styles.colInfo}>
+            <p className={styles.categoriaText}>{categoria.toUpperCase()}</p>
+
+            <h1 className={styles.titulo}>{nombre}</h1>
+            <p className={styles.descripcion}>{descripcion}</p>
+
+            <p className={styles.precioLinea}>
+              💵 Precio unidad:{" "}
+              <span className={styles.precioValor}>${precio}</span>
+            </p>
+
+            <p className={styles.envioLinea}>🚚 Envío a todo el país</p>
+
+            <p className={styles.meta}>
+              📦 <span className={styles.label}>Stock disponible:</span> {stock}
+            </p>
+
+            <button
+              className={styles.btnAgregar}
+              onClick={() => agregarAlCarrito(producto)}
+            >
+              Agregar al carrito 🛒
+            </button>
+          </div>
+        </article>
+      </div>
+
+      {/*  Enlace fuera del panel celeste */}
+      <div className={styles.volverWrapper}>
+        <Link to="/" className={styles.volver}>
+          ← Volver a productos
+        </Link>
       </div>
     </section>
   );
-}
-
-export default DetalleProducto;
+} 

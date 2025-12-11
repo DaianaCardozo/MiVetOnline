@@ -1,0 +1,22 @@
+/* src/pages/Inicio.module.css */
+
+.hero {
+  text-align: center;
+  padding: 20px 10px;
+  margin-bottom: 20px;
+  background: var(--c-bg-medio);
+  border-radius: 10px;
+}
+
+.titulo {
+  color: var(--c-primario-oscuro);
+  font-size: 2rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.subtitulo {
+  color: var(--c-texto-suave);
+  font-size: 1.1rem;
+  margin: 8px 0 0;
+}

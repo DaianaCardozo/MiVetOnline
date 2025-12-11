@@ -1,14 +1,16 @@
+/* Carrito.module.css */
+
 .contenedor {
   max-width: 900px;
   margin: 40px auto;
   padding: 20px;
-  background-color: #f5f5f5;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--c-bg-medio);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .titulo {
-  color: #1976d2;
+  color: var(--c-primario-oscuro);
   text-align: center;
   margin-bottom: 20px;
 }
@@ -16,18 +18,18 @@
 .vacio {
   text-align: center;
   margin-top: 20px;
-  color: #444;
+  color: var(--c-texto-suave);
 }
 
 .producto {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #fff;
+  background-color: #ffffff;
   padding: 10px 20px;
   margin: 10px 0;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 .detalle {
@@ -48,30 +50,54 @@
 
 .info p {
   margin: 0;
-  color: #333;
+  color: var(--c-texto);
 }
 
 .btnEliminar {
-  background-color: #ef5350;
+  background-color: var(--c-error);
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   padding: 6px 12px;
   cursor: pointer;
   transition: 0.2s;
 }
 
 .btnEliminar:hover {
-  background-color: #d32f2f;
+  background-color: #b71c1c;
+}
+
+.controles {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btnCantidad {
+  background-color: var(--c-primario);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btnCantidad:hover {
+  background-color: var(--c-primario-oscuro);
+}
+
+.cantidad {
+  font-weight: bold;
 }
 
 .totalBox {
   text-align: center;
   margin-top: 30px;
-  background-color: #fff;
-  border-radius: 8px;
+  background-color: #ffffff;
+  border-radius: 10px;
   padding: 15px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 .totalBox p {
@@ -80,15 +106,15 @@
 }
 
 .btnVaciar {
-  background-color: #1976d2;
+  background-color: var(--c-primario);
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   padding: 10px 20px;
   cursor: pointer;
   transition: 0.2s;
 }
 
 .btnVaciar:hover {
-  background-color: #0d47a1;
+  background-color: var(--c-primario-oscuro);
 }

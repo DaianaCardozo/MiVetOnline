@@ -1,25 +1,42 @@
-// ============================
-// Componente: Header.jsx
-// Muestra el encabezado del sitio con el logo y el título principal.
-// ============================
+import { Link } from "react-router-dom";
+import styles from "./Header.module.css";
+import logo from "../assets/LogoVetOnline.png";
 
-
-import logo from "../assets/logo.png";   // Importo la imagen del logo
-import styles from "./Header.module.css";  // Importo los estilos del header
-
-function Header() {
+export default function Header() {
   return (
-    <header className={styles.header}>
-       {/* Imagen del logo del sitio */}
-      <img
-        src={logo}
-        alt="Logo de Mi Vet Online"
-        className={styles.logo}
-      />
-       {/* Título principal del sitio */}
-      <h1 className={styles.title}>Mi Vet Online</h1>
-    </header>
+    <Link 
+      to="/" 
+      style={{
+        textDecoration: "none",
+        color: "inherit",
+        display: "block"
+      }}
+    >
+      <header className={styles.header}>
+        <div className={styles.hero}>
+
+          {/* LOGO */}
+          <img src={logo} alt="logo" className={styles.logo} />
+
+          {/* TEXTO CENTRADO */}
+          <div className={styles.textCenter}>
+            <h1 className={styles.titulo}>Mi Vet Online</h1>
+            <p className={styles.subtitulo}>Tu tienda veterinaria de confianza.</p>
+          </div>
+
+          {/* LOGIN a la derecha */}
+          <div className={styles.loginBox}>
+            <Link
+              to="/login"
+              className={styles.loginBtn}
+              onClick={(e) => e.stopPropagation()} 
+            >
+              Iniciar sesión
+            </Link>
+          </div>
+
+        </div>
+      </header>
+    </Link>
   );
 }
-
-export default Header;
